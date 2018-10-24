@@ -45,6 +45,9 @@ func main() {
 		} else {
 			log.Println("nats conn was no longer present")
 		}
+		if !nc.IsClosed() {
+			log.Println("but nats is still happy as a bunny")
+		}
 	}
 	pprof.Lookup("goroutine").WriteTo(os.Stdout, 2)
 	runtime.Goexit()
