@@ -1,0 +1,33 @@
+version: '3'
+services:
+  nats:
+    image: nats-streaming:0.11.2
+    ports:
+      - "8222:8222"
+      - "4222:4222"
+    command:
+      - "-cid"
+      - "test-cluster"
+      - "-m"
+      - "8222"
+      - "--max_channels"
+      - "10"
+      - "--max_subs"
+      - "20"
+      - "--max_bytes"
+      - "0"
+      - "--max_msgs"
+      - "50000000"
+      - "--max_age"
+      - "0"
+      - "--max_inactivity"
+      - "0"
+      - "--store"
+      - "FILE"
+      - "--dir"
+      - "/var/nats-streaming/data"
+    volumes:
+      - nats-streaming-data:/var/nats-streaming/data
+volumes:
+  nats-streaming-data:
+
